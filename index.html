@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pomo Chrono !</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav class="topnav">
+    <span class="logo pixel">POMO  CHRONO  !</span>
+    <div class="nav-icons">
+      <button class="nav-btn pixel" id="btn-nav-music"   title="Music">♪</button>
+      <button class="nav-btn pixel" id="btn-nav-theme" title="Toggle Theme">☾</button>
+      <button class="nav-btn pixel" id="btn-nav-sound"   title="Sound">✦</button>
+      <button class="nav-btn pixel" id="btn-nav-notif"   title="Notifications">◷</button>
+      <button class="nav-btn pixel" id="btn-nav-settings" title="Settings">⚙</button>
+    </div>
+  </nav>
+
+  <main class="stage">
+    <div class="win-frame" id="win-frame">
+
+      <div class="win-titlebar">
+        <span class="win-title pixel">Pomo Chrono !</span>
+        <div class="win-controls">
+          <span class="wc">─</span>
+          <span class="wc">□</span>
+          <span class="wc">✕</span>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-start">
+        <h1 class="panel-heading pixel" style="font-size: 20px; margin-bottom: 10px;">POMO CHRONO</h1>
+        <p class="panel-desc pixel" style="margin-bottom: 20px;">Study smarter with this pomodoro timer !</p>
+        
+        <div class="image-container" style="margin-bottom: 30px;">
+            <img class="tomato-img" src="tomato.svg" alt="tomato" style="width: 130px; height: auto;">
+        </div>
+        
+        <button class="win-btn pixel" id="btn-main-start" style="padding: 15px 40px;">START</button>
+      </div>
+
+      <div class="panel hidden" id="panel-task">
+        <h2 class="panel-heading pixel">SET  YOUR  TASK</h2>
+        <div class="pencil" style="font-size: 40px; margin-bottom: 10px;">✏️</div>
+        <p class="panel-desc pixel">Write down the task you want to achieve during<br>this session.</p>
+        <input id="task-input" class="task-input pixel" type="text"
+               placeholder="Finish that damn maths exercise..." maxlength="48" autocomplete="off"/>
+        <button class="win-btn pixel" id="btn-set-timer">SET  TIMER</button>
+      </div>
+
+      <div class="panel hidden" id="panel-timer">
+        <div class="mode-label pixel" id="mode-label">FOCUS</div>
+
+        <div class="task-row" id="task-row">
+          <span class="task-arrow pixel">▶</span>
+          <span class="task-name pixel" id="task-name-display">Task</span>
+          <button class="task-edit-btn pixel" id="btn-edit-task" title="Edit task">✎</button>
+        </div>
+
+        <div class="ring-area">
+          <svg class="ring-svg" viewBox="0 0 260 260">
+            <circle class="ring-track" cx="130" cy="130" r="110"/>
+            <circle class="ring-fill"  cx="130" cy="130" r="110" id="ring-fill"
+                    stroke-dasharray="691" stroke-dashoffset="0"/>
+          </svg>
+          <div class="ring-center">
+            <img class="tomato-img" src="tomato.svg" alt="tomato" id="tomato-img"/>
+            <div class="digits pixel" id="digits">25:00</div>
+          </div>
+        </div>
+
+        <div class="ctrl-row">
+          <button class="win-btn win-btn-sm pixel" id="btn-pause">PAUSE</button>
+          <button class="win-btn win-btn-sm pixel" id="btn-reset">RESET</button>
+          <button class="win-btn win-btn-sm pixel" id="btn-skip">SKIP</button>
+        </div>
+      </div>
+
+      <div class="panel hidden" id="panel-break">
+        <div class="mode-label pixel" id="break-mode-label">SHORT BREAK</div>
+        <div class="break-emoji" id="break-emoji">☕</div>
+        <p class="break-tip pixel" id="break-tip">Stretch and rest your eyes!</p>
+        <div class="ring-area">
+          <svg class="ring-svg" viewBox="0 0 260 260">
+            <circle class="ring-track" cx="130" cy="130" r="110"/>
+            <circle class="ring-fill break-ring" cx="130" cy="130" r="110" id="break-ring-fill"
+                    stroke-dasharray="691" stroke-dashoffset="0"/>
+          </svg>
+          <div class="ring-center">
+            <div class="digits pixel" id="break-digits">05:00</div>
+          </div>
+        </div>
+        <button class="win-btn pixel" id="btn-skip-break">SKIP  BREAK</button>
+      </div>
+
+      <div class="panel hidden" id="panel-settings">
+        <h2 class="panel-heading pixel" style="font-size:11px">SETTINGS</h2>
+        <div class="settings-grid">
+          <label class="setting-row pixel">FOCUS (MIN) <input type="number" id="set-focus" value="25"/></label>
+          <label class="setting-row pixel">SHORT BREAK <input type="number" id="set-short" value="5"/></label>
+          <label class="setting-row pixel">LONG BREAK <input type="number" id="set-long" value="15"/></label>
+          <label class="setting-row pixel">LONG BREAK EVERY <input type="number" id="set-interval" value="4"/></label>
+          <label class="setting-row pixel">SOUND <input type="checkbox" id="set-sound" checked/></label>
+          <label class="setting-row pixel">NOTIFICATIONS <input type="checkbox" id="set-notif" checked/></label>
+        </div>
+        <button class="win-btn pixel" id="btn-save-settings">SAVE</button>
+        <button class="win-btn pixel" id="btn-close-settings" style="margin-top:8px">BACK</button>
+      </div>
+
+    </div></main>
+
+  <footer class="statsbar">
+    <div class="stat-card">
+      <div class="stat-label pixel">TODAY</div>
+      <div class="stat-val pixel" id="stat-today">0</div>
+      <div class="stat-unit pixel">POMS</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label pixel">FOCUS</div>
+      <div class="stat-val pixel" id="stat-focus">0</div>
+      <div class="stat-unit pixel">MIN</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label pixel">BREAKS</div>
+      <div class="stat-val pixel" id="stat-breaks">0</div>
+      <div class="stat-unit pixel">MIN</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label pixel">STREAK</div>
+      <div class="stat-val pixel" id="stat-streak">0</div>
+      <div class="stat-unit pixel">DAYS</div>
+    </div>
+  </footer>
+
+  <div class="toast pixel" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

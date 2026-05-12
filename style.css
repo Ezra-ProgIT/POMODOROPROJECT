@@ -1,0 +1,151 @@
+/* =============================================
+   POMO CHRONO — style.css (ULTIMATE VERSION)
+   Retro pixel / fake-window aesthetic
+============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #6b0f0f;
+  --bg2:          #7a1010;
+  --win-bg:       #2d0a0a;
+  --win-border:   #4a1010;
+  --titlebar-bg:  #d4c9c9;
+  --titlebar-txt: #222;
+  --accent:       #f0a500;
+  --accent2:      #e8c14a;
+  --white:        #f5f0f0;
+  --muted:        rgba(245,240,240,0.45);
+  --ring-track:   rgba(255,255,255,0.1);
+  --ring-fill:    rgba(255,255,255,0.75);
+  --ring-break:   #f0a500;
+  --btn-border:   rgba(245,240,240,0.65);
+  --font:         'Press Start 2P', monospace;
+}
+
+/* ── DARK MODE OVERRIDE ── */
+body.dark-mode {
+  --bg:           #0f0f0f;
+  --bg2:          #1a1a1a;
+  --win-bg:       #121212;
+  --accent:       #00f0ff; /* Neon blue biar beda */
+  --accent2:      #5dade2;
+  --win-border:   #333;
+}
+
+html, body {
+  min-height: 100%;
+  background: var(--bg);
+  font-family: var(--font);
+  color: var(--white);
+  overflow: hidden;
+  transition: background 0.4s ease;
+}
+
+/* Scanline effect */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50; /* Di atas semuanya */
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px, transparent 1px, transparent 3px);
+}
+
+.pixel { font-family: var(--font); }
+
+/* ── TOP NAV ── */
+.topnav {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px 12px;
+}
+.logo { font-size: clamp(11px, 1.6vw, 15px); letter-spacing: 2px; text-shadow: 2px 2px 0 rgba(0,0,0,0.4); }
+.nav-icons { display: flex; gap: 6px; }
+.nav-btn {
+  width: 38px; height: 38px;
+  background: transparent; border: 2px solid rgba(245,240,240,0.35);
+  color: var(--white); font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: 0.15s;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+/* ── STAGE / WINDOW ── */
+.stage { display: flex; justify-content: center; align-items: center; padding: 0 16px; height: 75vh; }
+.win-frame {
+  width: min(620px, 96vw);
+  background: var(--win-bg);
+  border: 2px solid #888;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.win-titlebar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 5px 8px; background: linear-gradient(to right, #a8a8a8, #d0caca);
+  border-bottom: 1px solid #888;
+}
+.win-title { font-size: 9px; color: #222; }
+.win-controls { display: flex; gap: 4px; }
+.wc { width: 18px; height: 16px; background: #c0b8b8; border: 1px solid #888; font-size: 8px; display: flex; align-items: center; justify-content: center; }
+
+/* ── PANELS (KUNCI PERBAIKAN) ── */
+.panel {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 30px; min-height: 440px; text-align: center;
+}
+.panel.hidden { display: none !important; }
+
+/* Input box khusus biar kapsul kayak di gambar lu */
+.task-input {
+  width: 90%; max-width: 350px;
+  padding: 14px 20px; background: rgba(255,255,255,0.05);
+  border: 2px solid var(--accent2); color: var(--accent2);
+  font-size: 9px; border-radius: 30px; /* Rounded capsule */
+  outline: none; margin: 20px 0; text-align: center;
+}
+
+.win-btn {
+  padding: 14px 32px; background: transparent;
+  border: 2px solid var(--btn-border); color: var(--white);
+  font-size: 10px; letter-spacing: 2px; cursor: pointer;
+  transition: 0.15s;
+}
+.win-btn:hover { background: var(--white); color: var(--win-bg); }
+
+/* ── RING AREA FIX ── */
+.ring-area { position: relative; width: 240px; height: 240px; margin-bottom: 20px; }
+.ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.ring-track { fill: none; stroke: var(--ring-track); stroke-width: 8; }
+.ring-fill { fill: none; stroke: var(--ring-fill); stroke-width: 8; transition: stroke-dashoffset 1s linear; }
+.ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+.tomato-img {
+  width: 80px; height: auto; margin-bottom: 10px;
+  animation: tomatobob 2s ease-in-out infinite;
+}
+@keyframes tomatobob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+.digits { font-size: 38px; text-shadow: 3px 3px 0 rgba(0,0,0,0.5); }
+
+/* ── STATS BAR ── */
+.statsbar { display: flex; justify-content: center; gap: 15px; padding: 20px; }
+.stat-card {
+  background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 20px; min-width: 100px; text-align: center;
+}
+.stat-label { font-size: 7px; color: var(--muted); margin-bottom: 5px; }
+.stat-val { font-size: 16px; color: var(--accent); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: #222; border: 1px solid var(--accent); padding: 10px 20px;
+  font-size: 8px; opacity: 0; transition: 0.3s; z-index: 1000;
+}
+.toast.show { opacity: 1; }
