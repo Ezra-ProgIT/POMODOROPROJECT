@@ -15,7 +15,6 @@
     <div class="nav-icons">
       <button class="nav-btn pixel" id="btn-nav-music"   title="Music">♪</button>
       <button class="nav-btn pixel" id="btn-nav-theme" title="Toggle Theme">☾</button>
-      <button class="nav-btn pixel" id="btn-nav-sound"   title="Sound">✦</button>
       <button class="nav-btn pixel" id="btn-nav-notif"   title="Notifications">◷</button>
       <button class="nav-btn pixel" id="btn-nav-settings" title="Settings">⚙</button>
     </div>
@@ -100,6 +99,7 @@
 
       <div class="panel hidden" id="panel-settings">
         <h2 class="panel-heading pixel" style="font-size:11px">SETTINGS</h2>
+        
         <div class="settings-grid">
           <label class="setting-row pixel">FOCUS (MIN) <input type="number" id="set-focus" value="25"/></label>
           <label class="setting-row pixel">SHORT BREAK <input type="number" id="set-short" value="5"/></label>
@@ -108,10 +108,12 @@
           <label class="setting-row pixel">SOUND <input type="checkbox" id="set-sound" checked/></label>
           <label class="setting-row pixel">NOTIFICATIONS <input type="checkbox" id="set-notif" checked/></label>
         </div>
-        <button class="win-btn pixel" id="btn-save-settings">SAVE</button>
-        <button class="win-btn pixel" id="btn-close-settings" style="margin-top:8px">BACK</button>
-      </div>
 
+        <div class="btn-group">
+          <button class="win-btn pixel" id="btn-save-settings">SAVE</button>
+          <button class="win-btn pixel" id="btn-close-settings">BACK</button>
+       </div>
+      </div>
     </div></main>
 
   <footer class="statsbar">
